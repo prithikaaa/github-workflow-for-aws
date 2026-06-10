@@ -44,12 +44,12 @@ jobs:
       - name: Tag Image
         run: |
           docker tag flask-app:latest \
-          <ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/<REPO_NAME>:latest
+          997241706047.dkr.ecr.ap-south-1.amazonaws.com/ci-cd-test-repo:latest
 
       - name: Push Image to ECR
         run: |
           docker push \
-          <ACCOUNT_ID>.dkr.ecr.ap-south-1.amazonaws.com/<REPO_NAME>:latest
+          997241706047.dkr.ecr.ap-south-1.amazonaws.com/ci-cd-test-repo:latest
 
 
 
@@ -57,6 +57,6 @@ jobs:
       - name: Deploy to ECS
         run: |
           aws ecs update-service \
-            --cluster <CLUSTER_NAME> \
-            --service <SERVICE_NAME> \
+            --cluster ci-cd-test-cluster \
+            --service ci-cd-task-service-m6fxxnqj \
             --force-new-deployment
